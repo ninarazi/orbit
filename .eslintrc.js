@@ -33,7 +33,7 @@ module.exports = {
           "**/*.test.js",
           "**/__tests__/**",
           "**/__testfixtures__/**",
-          "**/*.stories.js",
+          "**/*.stories.*",
           "**/*.config.js",
           "**/stories/**",
           "**/tasks/**",
@@ -42,7 +42,8 @@ module.exports = {
           "packages/*/.storybook/**",
           "**/config/**",
           "**/scripts/**",
-          "gulpfile.js",
+          "**/gulpfile.js",
+          "packages/orbit-components/utils/**",
         ],
       },
     ],
@@ -108,7 +109,6 @@ module.exports = {
       },
       rules: {
         "@typescript-eslint/no-empty-interface": "off",
-        "@typescript-eslint/prefer-readonly-parameter-types": "error",
         "@typescript-eslint/no-empty-function": "off",
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": "error",
@@ -168,7 +168,6 @@ module.exports = {
     {
       files: "packages/eslint-plugin-orbit-components/**/*.ts",
       rules: {
-        "@typescript-eslint/prefer-readonly-parameter-types": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
       },
@@ -188,7 +187,6 @@ module.exports = {
         "global-require": "off",
         camelcase: "off",
         "no-console": ["error", { allow: ["warn", "error", "info", "table"] }],
-        "@typescript-eslint/prefer-readonly-parameter-types": "off",
       },
     },
     {
@@ -237,27 +235,17 @@ module.exports = {
         ReactExample: false,
       },
     },
-    // some ESLint rules fail in certain cases, so we're disabling them
-    {
-      files: ["packages/orbit-components/src/utils/**/*"],
-      rules: {
-        "@typescript-eslint/prefer-readonly-parameter-types": "OFF",
-      },
-    },
-    {
-      files: ["packages/eslint-plugin-orbit-components/src/**"],
-      rules: {
-        "@typescript-eslint/prefer-readonly-parameter-types": "off",
-      },
-    },
     {
       files: "**/__examples__/**/*.js",
       rules: {
+        // even though we want to remove "/index" segments, there are too many in examples
+        // and it would cause a lot of JSON files updates without any real gain
         "import/no-useless-path-segments": ["error", { noUselessIndex: false }],
       },
     },
+    // some ESLint rules fail in certain cases, so we're disabling them
     {
-      files: ["*.stories.js", "**/__examples__/**", "*.test.js"],
+      files: ["*.stories.*", "**/__examples__/**", "*.test.js"],
       rules: {
         "orbit-components/unique-id": "off",
       },
