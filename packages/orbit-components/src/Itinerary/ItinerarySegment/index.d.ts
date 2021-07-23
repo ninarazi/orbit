@@ -20,6 +20,8 @@ export interface Props extends Common.Global, Common.SpaceAfter {
   readonly label?: React.ReactNode;
   /** The content of ItinerarySegment */
   readonly children: React.ReactNode;
+  /** onClick callback that is triggered when Segment is clicked */
+  readonly onClick?: Common.Event<React.SyntheticEvent<HTMLDivElement>>;
 }
 
 declare const ItinerarySegment: React.FunctionComponent<Props>;

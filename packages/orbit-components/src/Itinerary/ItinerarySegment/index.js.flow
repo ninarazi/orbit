@@ -11,11 +11,12 @@ import type { spaceAfter } from "../../common/getSpacingToken";
 
 export type Statuses = "warning" | "critical" | "info" | "success";
 export type Props = {|
-  ...Globals,
-  ...spaceAfter,
   +status?: Statuses,
   +label?: React.Node,
+  +onClick?: (ev: SyntheticEvent<HTMLDivElement>) => void | Promise<any>,
   +children: React.Node,
+  ...Globals,
+  ...spaceAfter,
 |};
 
 export type PartLinedContentProps = {|

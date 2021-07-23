@@ -12,6 +12,7 @@ import type { Props } from ".";
 
 const StyledWrapper = styled.div`
   position: relative;
+  cursor: pointer;
   margin-bottom: ${getSpacingToken};
 `;
 
@@ -20,8 +21,16 @@ StyledWrapper.defaultProps = {
   theme: defaultTheme,
 };
 
-const ItinerarySegment = ({ status, label, children, spaceAfter, dataTest }: Props): React.Node => {
+const ItinerarySegment = ({
+  status,
+  label,
+  children,
+  spaceAfter,
+  dataTest,
+  onClick,
+}: Props): React.Node => {
   const content = React.Children.toArray(children);
+  const [opened, setOpened] = React.useState(false);
 
   const parts = content && content.length > 0 && (
     <Stack direction="column">
@@ -29,6 +38,8 @@ const ItinerarySegment = ({ status, label, children, spaceAfter, dataTest }: Pro
         return (
           <ItinerarySegmentProvider
             index={i}
+            opened={opened}
+            setOpened={() => setOpened(!opened)}
             last={i === content.length - 1}
             isNextHidden={content[i + 1] && content[i + 1].props.hidden}
             count={content.length}
@@ -42,8 +53,13 @@ const ItinerarySegment = ({ status, label, children, spaceAfter, dataTest }: Pro
     </Stack>
   );
 
+  const handleClick = (ev: SyntheticEvent<HTMLDivElement>) => {
+    if (onClick) onClick(ev);
+    setOpened(!opened);
+  };
+
   return (
-    <StyledWrapper spaceAfter={spaceAfter} data-test={dataTest}>
+    <StyledWrapper spaceAfter={spaceAfter} data-test={dataTest} onClick={handleClick}>
       {status ? (
         <ItinerarySegmentStatus type={status} label={label}>
           {parts}

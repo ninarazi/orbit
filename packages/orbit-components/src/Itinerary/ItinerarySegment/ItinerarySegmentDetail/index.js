@@ -19,7 +19,6 @@ import type { Props } from ".";
 
 const StyledWrapper = styled.div`
   width: 100%;
-  cursor: pointer;
   position: relative;
   box-sizing: border-box;
 `;
@@ -72,7 +71,7 @@ StyledExpandableContent.defaultProps = {
 };
 
 const ItinerarySegmentDetail = ({ duration, summary, children }: Props): React.Node => {
-  const { expanded, setExpanded, hasStatus } = usePart();
+  const { hasStatus, opened, setOpened } = usePart();
   const { calculatedWidth } = useWidth();
   const [{ height }, ref] = useBoundingRect({ height: 0 });
 
@@ -81,30 +80,21 @@ const ItinerarySegmentDetail = ({ duration, summary, children }: Props): React.N
 
   return (
     <>
-      <StyledWrapper
-        expanded={expanded}
-        hasStatus={hasStatus}
-        onClick={() => setExpanded(!expanded)}
-      >
+      <StyledWrapper expanded={opened} hasStatus={hasStatus}>
         <StyledInnerWrapper>
           <Stack align="center" spacing="small" spaceAfter="small">
             <StyledDuration minWidth={calculatedWidth || 60}>
               <Text weight="bold">{duration}</Text>
             </StyledDuration>
             <ItineraryIcon isDetails />
-            <Stack
-              justify="center"
-              shrink
-              direction="column"
-              spacing={expanded ? "medium" : "none"}
-            >
+            <Stack justify="center" shrink direction="column" spacing={opened ? "medium" : "none"}>
               <StyledSummary>{summary}</StyledSummary>
             </Stack>
-            {expanded ? <ChevronUp /> : <ChevronDown />}
+            {opened ? <ChevronUp /> : <ChevronDown />}
           </Stack>
         </StyledInnerWrapper>
-        <Slide maxHeight={height} expanded={expanded} id={slideID} ariaLabelledBy={labelID}>
-          <StyledExpandable ref={ref} onClick={() => setExpanded(!expanded)}>
+        <Slide maxHeight={height} expanded={opened} id={slideID} ariaLabelledBy={labelID}>
+          <StyledExpandable ref={ref} onClick={setOpened}>
             <StyledExpandableContent offset={calculatedWidth}>{children}</StyledExpandableContent>
           </StyledExpandable>
         </Slide>
