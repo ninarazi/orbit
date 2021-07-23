@@ -6,6 +6,7 @@ import type { Context, ProviderProps } from "./context";
 export const ItinerarySegmentContext: React.Context<Context> = React.createContext({
   isNextHidden: false,
   isHidden: false,
+  noElevation: false,
   hasStatus: false,
   opened: false,
   setOpened: () => {},
@@ -23,6 +24,7 @@ export const ItinerarySegmentProvider = ({
   setOpened,
   isNextHidden,
   isHidden,
+  noElevation,
   hasStatus,
 }: ProviderProps): React.Node => {
   return (
@@ -30,6 +32,7 @@ export const ItinerarySegmentProvider = ({
       value={{
         index,
         last,
+        noElevation,
         isNextHidden,
         isHidden,
         opened,

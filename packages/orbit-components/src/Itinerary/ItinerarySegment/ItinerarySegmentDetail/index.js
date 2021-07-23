@@ -47,9 +47,8 @@ const StyledDuration = styled.div`
 `;
 
 const StyledExpandable = styled.div`
-  ${({ offset, theme }) => css`
+  ${({ theme }) => css`
     padding: ${theme.orbit.spaceSmall} 0;
-    margin-${left}: ${offset + 16}px;
     background: ${theme.orbit.paletteCloudLight};
   `}
 `;
@@ -71,7 +70,7 @@ StyledExpandableContent.defaultProps = {
 };
 
 const ItinerarySegmentDetail = ({ duration, summary, children }: Props): React.Node => {
-  const { hasStatus, opened, setOpened } = usePart();
+  const { hasStatus, opened, setOpened, noElevation } = usePart();
   const { calculatedWidth } = useWidth();
   const [{ height }, ref] = useBoundingRect({ height: 0 });
 
@@ -81,7 +80,7 @@ const ItinerarySegmentDetail = ({ duration, summary, children }: Props): React.N
   return (
     <>
       <StyledWrapper expanded={opened} hasStatus={hasStatus}>
-        <StyledInnerWrapper>
+        <StyledInnerWrapper noElevation={noElevation}>
           <Stack align="center" spacing="small" spaceAfter="small">
             <StyledDuration minWidth={calculatedWidth || 60}>
               <Text weight="bold">{duration}</Text>

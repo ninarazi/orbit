@@ -39,16 +39,16 @@ export { InputGroup } from "./InputGroup";
 export { InputStepper } from "./InputStepper";
 export { InputStepperStateless } from "./InputStepper/InputStepperStateless";
 export { Illustration } from "./Illustration";
-export { List } from "./List/index";
-export { ListItem } from "./List/ListItem/index";
-export { ListChoice } from "./ListChoice/index";
-export { InputFile } from "./InputFile/index";
+export { List } from "./List";
+export { ListItem } from "./List/ListItem";
+export { ListChoice } from "./ListChoice";
+export { InputFile } from "./InputFile";
 export {
   default as Itinerary,
   ItinerarySegment,
   ItinerarySegmentDetail,
   ItinerarySegmentStop,
-} from "./Itinerary/index";
+} from "./Itinerary";
 export { Inline } from "./Inline";
 export { Loading } from "./Loading";
 export { Popover } from "./Popover";

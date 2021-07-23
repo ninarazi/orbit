@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { ItinerarySegmentProvider } from "./context";
 import Stack from "../../Stack";
@@ -11,9 +11,14 @@ import defaultTheme from "../../defaultTheme";
 import type { Props } from ".";
 
 const StyledWrapper = styled.div`
-  position: relative;
-  cursor: pointer;
-  margin-bottom: ${getSpacingToken};
+  ${({ theme, noElevation }) => css`
+    position: relative;
+    cursor: pointer;
+    margin-bottom: ${getSpacingToken};
+    box-shadow: ${!noElevation && theme.orbit.boxShadowFixed};
+    border-radius: ${theme.orbit.borderRadiusLarge};
+    padding: ${theme.orbit.spaceSmall} 0;
+  `}
 `;
 
 // $FlowFixMe: https://github.com/flow-typed/flow-typed/issues/3653#issuecomment-568539198
@@ -27,6 +32,7 @@ const ItinerarySegment = ({
   children,
   spaceAfter,
   dataTest,
+  noElevation,
   onClick,
 }: Props): React.Node => {
   const content = React.Children.toArray(children);
@@ -45,6 +51,7 @@ const ItinerarySegment = ({
             count={content.length}
             isHidden={el.props.hidden}
             hasStatus={!!status}
+            noElevation={!!noElevation}
           >
             {el}
           </ItinerarySegmentProvider>
@@ -59,7 +66,12 @@ const ItinerarySegment = ({
   };
 
   return (
-    <StyledWrapper spaceAfter={spaceAfter} data-test={dataTest} onClick={handleClick}>
+    <StyledWrapper
+      spaceAfter={spaceAfter}
+      data-test={dataTest}
+      onClick={handleClick}
+      noElevation={noElevation}
+    >
       {status ? (
         <ItinerarySegmentStatus type={status} label={label}>
           {parts}

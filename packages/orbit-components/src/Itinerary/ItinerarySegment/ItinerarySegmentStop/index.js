@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { useWidth } from "../../context";
 import defaultTheme from "../../../defaultTheme";
@@ -11,11 +11,13 @@ import ItineraryIcon from "../ItineraryIcon";
 import type { Props } from ".";
 
 const StyledWrapper = styled.div`
-  display: flex;
-  position: relative;
-  box-sizing: border-box;
-  opacity: ${({ hidden }) => (hidden ? `0.8` : `1`)};
-  padding: 0 ${({ theme }) => theme.orbit.spaceSmall};
+  ${({ theme, hidden }) => css`
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    opacity: ${hidden ? `0.8` : `1`};
+    padding: 0 ${theme.orbit.spaceSmall};
+  `}
 `;
 
 // $FlowFixMe: https://github.com/flow-typed/flow-typed/issues/3653#issuecomment-568539198

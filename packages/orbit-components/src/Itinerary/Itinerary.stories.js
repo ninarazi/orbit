@@ -64,7 +64,7 @@ export const Status = (): React.Node => {
 
   return (
     <Itinerary>
-      <ItinerarySegment status={type} label={label}>
+      <ItinerarySegment status={type} label={label} noElevation>
         <ItinerarySegmentStop
           city="Prague"
           station="Václav Havel Airport Prague (PRG)"
@@ -106,7 +106,7 @@ export const Stop = (): React.Node => {
 
 export const Detail = (): React.Node => {
   return (
-    <ItinerarySegment>
+    <ItinerarySegment noElevation>
       <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
         <CollapsedContent />
       </ItinerarySegmentDetail>

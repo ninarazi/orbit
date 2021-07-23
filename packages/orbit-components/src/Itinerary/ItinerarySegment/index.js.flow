@@ -4,6 +4,7 @@
   DOCUMENTATION: https://orbit.kiwi/components/itinerary/itinerarypart
 */
 
+import { boolean } from "@storybook/addon-knobs";
 import * as React from "react";
 
 import type { Globals } from "../../common/common.js.flow";
@@ -13,6 +14,7 @@ export type Statuses = "warning" | "critical" | "info" | "success";
 export type Props = {|
   +status?: Statuses,
   +label?: React.Node,
+  +noElevation?: boolean,
   +onClick?: (ev: SyntheticEvent<HTMLDivElement>) => void | Promise<any>,
   +children: React.Node,
   ...Globals,
