@@ -2,11 +2,11 @@
 import * as React from "react";
 
 type SetStateAction<S> = S | ((prevState: S) => S);
-
 type Dispatch<A> = (value: A) => void;
 
 export type Context = {|
   +setWidths: Dispatch<SetStateAction<number[]>>,
+  +setCalculatedWidth: Dispatch<SetStateAction<number>>,
   +calculatedWidth: number,
 |};
 

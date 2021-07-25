@@ -2,7 +2,9 @@
 import * as React from "react";
 import styled from "styled-components";
 
+import ItineraryBadgeList from "./ItineraryBadgeList";
 import ItinerarySegment from "./ItinerarySegment";
+import ItineraryStatus from "./ItineraryStatus";
 import ItinerarySegmentStop from "./ItinerarySegment/ItinerarySegmentStop";
 import ItinerarySegmentDetail from "./ItinerarySegment/ItinerarySegmentDetail";
 import defaultTheme from "../defaultTheme";
@@ -28,5 +30,11 @@ const Itinerary = ({ children, dataTest, spaceAfter }: Props): React.Node => {
   );
 };
 
-export { ItinerarySegment, ItinerarySegmentDetail, ItinerarySegmentStop };
+export {
+  ItinerarySegment,
+  ItinerarySegmentDetail,
+  ItinerarySegmentStop,
+  ItineraryBadgeList,
+  ItineraryStatus,
+};
 export default Itinerary;

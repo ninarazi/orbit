@@ -7,7 +7,6 @@ export const ItinerarySegmentContext: React.Context<Context> = React.createConte
   isNextHidden: false,
   isHidden: false,
   noElevation: false,
-  hasStatus: false,
   opened: false,
   setOpened: () => {},
   index: 0,
@@ -25,7 +24,6 @@ export const ItinerarySegmentProvider = ({
   isNextHidden,
   isHidden,
   noElevation,
-  hasStatus,
 }: ProviderProps): React.Node => {
   return (
     <ItinerarySegmentContext.Provider
@@ -38,7 +36,6 @@ export const ItinerarySegmentProvider = ({
         opened,
         setOpened,
         count,
-        hasStatus,
       }}
     >
       {children}

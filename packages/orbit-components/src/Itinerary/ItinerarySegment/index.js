@@ -4,7 +4,6 @@ import styled, { css } from "styled-components";
 
 import { ItinerarySegmentProvider } from "./context";
 import Stack from "../../Stack";
-import ItinerarySegmentStatus from "./ItinerarySegmentStatus";
 import getSpacingToken from "../../common/getSpacingToken";
 import defaultTheme from "../../defaultTheme";
 
@@ -27,17 +26,14 @@ StyledWrapper.defaultProps = {
 };
 
 const ItinerarySegment = ({
-  status,
-  label,
   children,
-  spaceAfter,
+  spaceAfter = "medium",
   dataTest,
   noElevation,
   onClick,
 }: Props): React.Node => {
   const content = React.Children.toArray(children);
   const [opened, setOpened] = React.useState(false);
-
   const parts = content && content.length > 0 && (
     <Stack direction="column">
       {React.Children.map(content, (el, i) => {
@@ -50,7 +46,6 @@ const ItinerarySegment = ({
             isNextHidden={content[i + 1] && content[i + 1].props.hidden}
             count={content.length}
             isHidden={el.props.hidden}
-            hasStatus={!!status}
             noElevation={!!noElevation}
           >
             {el}
@@ -72,13 +67,7 @@ const ItinerarySegment = ({
       onClick={handleClick}
       noElevation={noElevation}
     >
-      {status ? (
-        <ItinerarySegmentStatus type={status} label={label}>
-          {parts}
-        </ItinerarySegmentStatus>
-      ) : (
-        parts
-      )}
+      {parts}
     </StyledWrapper>
   );
 };

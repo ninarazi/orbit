@@ -7,6 +7,8 @@
 import * as React from "react";
 
 import typeof ItinerarySegmentComponent from "./ItinerarySegment";
+import typeof ItineraryBadgeListComponent from "./ItineraryBadgeList";
+import typeof ItineraryStatusComponent from "./ItineraryStatus";
 import typeof ItinerarySegmentPlaceComponent from "./ItinerarySegment/ItinerarySegmentStop";
 import typeof ItinerarySegmentDetailComponent from "./ItinerarySegment/ItinerarySegmentDetail";
 import type { Globals } from "../common/common.js.flow";
@@ -19,6 +21,9 @@ export type Props = {|
 |};
 
 declare export var ItinerarySegment: ItinerarySegmentComponent;
+declare export var ItineraryBadgeList: ItineraryBadgeListComponent;
+declare export var ItineraryStatus: ItineraryStatusComponent;
 declare export var ItinerarySegmentStop: ItinerarySegmentPlaceComponent;
 declare export var ItinerarySegmentDetail: ItinerarySegmentDetailComponent;
+
 declare export default React.ComponentType<Props>;

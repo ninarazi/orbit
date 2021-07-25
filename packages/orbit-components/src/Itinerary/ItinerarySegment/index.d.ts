@@ -14,10 +14,6 @@ export type Statuses = "warning" | "critical" | "info" | "success";
 */
 
 export interface Props extends Common.Global, Common.SpaceAfter {
-  /** The status of ItinerarySegment */
-  readonly status?: Statuses;
-  /** Status message of ItinerarySegment */
-  readonly label?: React.ReactNode;
   /** The content of ItinerarySegment */
   readonly children: React.ReactNode;
   /** onClick callback that is triggered when Segment is clicked */

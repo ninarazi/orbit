@@ -5,6 +5,7 @@ import type { Context, ProviderProps } from "./context";
 
 export const ItineraryContext: React.Context<Context> = React.createContext({
   setWidths: () => {},
+  setCalculatedWidth: () => {},
   calculatedWidth: 0,
 });
 
@@ -20,6 +21,7 @@ export const ItineraryProvider = ({ children }: ProviderProps): React.Node => {
     <ItineraryContext.Provider
       value={{
         calculatedWidth,
+        setCalculatedWidth,
         setWidths,
       }}
     >

@@ -1,14 +1,23 @@
 // @flow
 import * as React from "react";
-import { text, select, boolean } from "@storybook/addon-knobs";
+import { text, boolean } from "@storybook/addon-knobs";
 
 import Airplane from "../icons/AirplaneUp";
 import Stack from "../Stack";
 import CarrierLogo from "../CarrierLogo";
 import Badge from "../Badge";
+import { BadgeListItem } from "../BadgeList";
 import Text from "../Text";
+import AlertCircle from "../icons/AlertCircle";
+import Guarantee from "../icons/KiwicomGuarantee";
 
-import Itinerary, { ItinerarySegment, ItinerarySegmentDetail, ItinerarySegmentStop } from ".";
+import Itinerary, {
+  ItinerarySegment,
+  ItineraryBadgeList,
+  ItinerarySegmentDetail,
+  ItinerarySegmentStop,
+  ItineraryStatus,
+} from ".";
 
 const BadgeGroup = () => {
   const carrier = [{ code: "FR", name: "Ryanair" }];
@@ -59,35 +68,49 @@ export const Segment = (): React.Node => {
 };
 
 export const Status = (): React.Node => {
-  const label = text("label", "Canceled");
-  const type = select("type", ["critical", "warning", "info", "success"], "critical");
-
   return (
     <Itinerary>
-      <ItinerarySegment status={type} label={label} noElevation>
-        <ItinerarySegmentStop
-          city="Prague"
-          station="Václav Havel Airport Prague (PRG)"
-          date="Fri, 19.10"
-          time="14:05"
-        />
-        <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
-          <CollapsedContent />
-        </ItinerarySegmentDetail>
-        <ItinerarySegmentStop
-          city="Milan"
-          station="Milan Bergamo International Airport (BGY)"
-          date="Fri, 19.10"
-          time="16:35"
-        />
-        <ItinerarySegmentStop
-          city="Moscow"
-          station="Moscow Sheremetyevo International Airport (SVO)"
-          date="Mon, 22.10"
-          time="10:15"
-          hidden
-        />
-      </ItinerarySegment>
+      <ItineraryStatus type="critical" label="Rescheduled · 4h later" spaceAfter="medium">
+        <ItinerarySegment noElevation>
+          <ItinerarySegmentStop
+            city="Prague"
+            station="Václav Havel Airport Prague (PRG)"
+            date="Fri, 19.10"
+            time="14:05"
+          />
+          <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
+            <CollapsedContent />
+          </ItinerarySegmentDetail>
+          <ItinerarySegmentStop
+            city="Vienna"
+            station="Vienna International Airport"
+            date="Fri, 19.10"
+            time="15:35"
+          />
+        </ItinerarySegment>
+      </ItineraryStatus>
+      <ItineraryBadgeList>
+        <BadgeListItem icon={<AlertCircle />}>The layover in Vienna is too short</BadgeListItem>
+      </ItineraryBadgeList>
+      <ItineraryStatus type="warning" label="Affected connection">
+        <ItinerarySegment noElevation>
+          <ItinerarySegmentStop
+            city="Vienna"
+            station="Vienna International Airport"
+            date="Fri, 19.10"
+            time="18:15"
+          />
+          <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
+            <CollapsedContent />
+          </ItinerarySegmentDetail>
+          <ItinerarySegmentStop
+            city="Milan"
+            station="Milan Bergamo International Airport (BGY)"
+            date="Fri, 19.10"
+            time="19:20"
+          />
+        </ItinerarySegment>
+      </ItineraryStatus>
     </Itinerary>
   );
 };
@@ -117,7 +140,7 @@ export const Detail = (): React.Node => {
 export const Default = (): React.Node => {
   return (
     <Itinerary>
-      <ItinerarySegment spaceAfter="large">
+      <ItinerarySegment>
         <ItinerarySegmentStop
           city="Moscow"
           station="Sheremetyevo International Airport (SVO)"
@@ -134,6 +157,11 @@ export const Default = (): React.Node => {
           time="16:35"
         />
       </ItinerarySegment>
+      <ItineraryBadgeList>
+        <BadgeListItem icon={<Guarantee />}>
+          Connection protected by the Kiwi.com Guarantee
+        </BadgeListItem>
+      </ItineraryBadgeList>
       <ItinerarySegment spaceAfter="large">
         <ItinerarySegmentStop
           city="Prague"

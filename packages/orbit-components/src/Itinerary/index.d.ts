@@ -1,6 +1,8 @@
 import * as React from "react";
 
 import ItinerarySegment from "./ItinerarySegment";
+import ItineraryStatus from "./ItineraryStatus";
+import ItineraryBadgeList from "./ItineraryBadgeList";
 import ItinerarySegmentStop from "./ItinerarySegment/ItinerarySegmentStop";
 import ItinerarySegmentDetail from "./ItinerarySegment/ItinerarySegmentDetail";
 import { Global, SpaceAfter } from "../common/common";
@@ -45,7 +47,13 @@ export interface Props extends Global, SpaceAfter {
   readonly children: React.ReactNode;
 }
 
-export { ItinerarySegment, ItinerarySegmentStop, ItinerarySegmentDetail };
+export {
+  ItinerarySegment,
+  ItinerarySegmentStop,
+  ItinerarySegmentDetail,
+  ItineraryStatus,
+  ItineraryBadgeList,
+};
 
 declare const Itinerary: React.FunctionComponent<Props>;
 export default Itinerary;

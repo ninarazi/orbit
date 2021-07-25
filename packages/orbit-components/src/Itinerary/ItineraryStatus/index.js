@@ -2,19 +2,19 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
 
-import { left } from "../../../utils/rtl";
-import Alert from "../../../icons/Alert";
-import Warning from "../../../icons/AlertCircle";
-import Info from "../../../icons/InformationCircle";
-import Check from "../../../icons/CheckCircle";
-import Text from "../../../Text";
-import Stack from "../../../Stack";
-import defaultTheme from "../../../defaultTheme";
-import type { ThemeProps } from "../../../defaultTheme";
+import { left } from "../../utils/rtl";
+import Alert from "../../icons/Alert";
+import Warning from "../../icons/AlertCircle";
+import Info from "../../icons/InformationCircle";
+import Check from "../../icons/CheckCircle";
+import Text from "../../Text";
+import Stack from "../../Stack";
+import defaultTheme from "../../defaultTheme";
+import type { ThemeProps } from "../../defaultTheme";
 import { STATUSES } from "./consts";
-import type { Statuses } from "..";
+import getSpacingToken from "../../common/getSpacingToken";
 
-import type { Props } from ".";
+import type { Statuses, Props } from ".";
 
 const resolveColor = (status: Statuses, isHeader?: boolean) => ({ theme }: ThemeProps) => {
   const border = {
@@ -45,7 +45,8 @@ const StyledWrapper = styled.div`
     border-radius: ${theme.orbit.borderRadiusLarge};
     border-${left}: ${theme.orbit.borderRadiusNormal} solid ${type && resolveColor(type)};
     box-shadow: ${theme.orbit.boxShadowFixed};
-  `}
+    margin-bottom: ${getSpacingToken};
+    `}
 `;
 
 // $FlowFixMe: https://github.com/flow-typed/flow-typed/issues/3653#issuecomment-568539198
@@ -102,9 +103,15 @@ const StatusIcon = ({ type }: {| type: Statuses |}) => {
   }
 };
 
-const ItineraryPartStatus = ({ type, label, children, offset }: Props): React.Node => {
+const ItineraryStatus = ({
+  type,
+  label,
+  spaceAfter = "medium",
+  children,
+  offset,
+}: Props): React.Node => {
   return (
-    <StyledWrapper type={type}>
+    <StyledWrapper type={type} spaceAfter={spaceAfter}>
       <StyledStatusHeader type={type}>
         {/* TODO: replace icons with octagon */}
         <StyledStatusText offset={offset}>
@@ -119,4 +126,4 @@ const ItineraryPartStatus = ({ type, label, children, offset }: Props): React.No
   );
 };
 
-export default ItineraryPartStatus;
+export default ItineraryStatus;

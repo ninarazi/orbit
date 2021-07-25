@@ -41,9 +41,11 @@ const StyledSummary = styled.div`
 `;
 
 const StyledDuration = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  min-width: ${({ minWidth }) => minWidth}px;
+  ${({ minWidth }) => css`
+    display: flex;
+    justify-content: flex-end;
+    min-width: ${minWidth && `${minWidth}px`};
+  `}
 `;
 
 const StyledExpandable = styled.div`
@@ -70,7 +72,7 @@ StyledExpandableContent.defaultProps = {
 };
 
 const ItinerarySegmentDetail = ({ duration, summary, children }: Props): React.Node => {
-  const { hasStatus, opened, setOpened, noElevation } = usePart();
+  const { opened, setOpened, noElevation } = usePart();
   const { calculatedWidth } = useWidth();
   const [{ height }, ref] = useBoundingRect({ height: 0 });
 
@@ -79,7 +81,7 @@ const ItinerarySegmentDetail = ({ duration, summary, children }: Props): React.N
 
   return (
     <>
-      <StyledWrapper expanded={opened} hasStatus={hasStatus}>
+      <StyledWrapper>
         <StyledInnerWrapper noElevation={noElevation}>
           <Stack align="center" spacing="small" spaceAfter="small">
             <StyledDuration minWidth={calculatedWidth || 60}>

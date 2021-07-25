@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
+
 export type Context = {|
   +isNextHidden: boolean,
   +noElevation: boolean,
   +isHidden: boolean,
-  +hasStatus: boolean,
   +index: number,
   +opened: boolean,
   +setOpened: () => void,
@@ -17,7 +17,6 @@ export type ProviderProps = {|
   +noElevation: boolean,
   +isNextHidden: boolean,
   +isHidden: boolean,
-  +hasStatus: boolean,
   +index: number,
   +opened: boolean,
   +setOpened: () => void,
