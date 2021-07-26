@@ -1,26 +1,25 @@
-import * as React from "react";
+import React from "react";
 
 /** DOCS:
   ItineraryPartDetail serves as connection between two ItineraryPartPlace components (segments)
 */
 
 interface Detail {
-  icon: React.ReactNode;
-  text: React.ReactNode;
-  additional: React.ReactNode;
+  readonly icon: React.ReactNode;
+  readonly text: React.ReactNode;
+  readonly additional: React.ReactNode;
 }
 interface ContentItem {
-  heading: React.ReactNode;
-  items: Detail[];
+  readonly heading: React.ReactNode;
+  readonly items: Detail[];
 }
-
 export interface Props {
   /** The content of ItineraryDetail component, when it's not expanded */
   readonly summary: React.ReactNode;
-  /** The duration between two Itinerary parts  */
-  readonly content: ContentItem[];
-  readonly duration: string;
   /** The content of ItineraryDetail component, shown when it's expanded */
+  readonly content: ContentItem[];
+  /** The duration between two Itinerary parts  */
+  readonly duration: string;
   /** default: <Airplane /> */
   readonly icon?: React.ReactNode;
 }

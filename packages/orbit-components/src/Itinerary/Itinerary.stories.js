@@ -112,45 +112,84 @@ export const Segment = (): React.Node => {
 
 export const Status = (): React.Node => {
   return (
-    <Itinerary>
-      <ItineraryStatus type="critical" label="Rescheduled · 4h later" spaceAfter="medium">
-        <ItinerarySegment noElevation>
-          <ItinerarySegmentStop
-            city="Prague"
-            station="Václav Havel Airport Prague (PRG)"
-            date="Fri, 19.10"
-            time="14:05"
-          />
-          <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
-          <ItinerarySegmentStop
-            city="Vienna"
-            station="Vienna International Airport"
-            date="Fri, 19.10"
-            time="15:35"
-          />
-        </ItinerarySegment>
-      </ItineraryStatus>
-      <ItineraryBadgeList>
-        <BadgeListItem icon={<AlertCircle />}>The layover in Vienna is too short</BadgeListItem>
-      </ItineraryBadgeList>
-      <ItineraryStatus type="warning" label="Affected connection">
-        <ItinerarySegment noElevation>
-          <ItinerarySegmentStop
-            city="Vienna"
-            station="Vienna International Airport"
-            date="Fri, 19.10"
-            time="18:15"
-          />
-          <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
-          <ItinerarySegmentStop
-            city="Milan"
-            station="Milan Bergamo International Airport (BGY)"
-            date="Fri, 19.10"
-            time="19:20"
-          />
-        </ItinerarySegment>
-      </ItineraryStatus>
-    </Itinerary>
+    <>
+      <Itinerary>
+        <ItineraryStatus type="critical" label="Rescheduled · 4h later" spaceAfter="medium">
+          <ItinerarySegment noElevation>
+            <ItinerarySegmentStop
+              city="Prague"
+              station="Václav Havel Airport Prague (PRG)"
+              date="Fri, 19.10"
+              time="14:05"
+            />
+            <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
+            <ItinerarySegmentStop
+              city="Vienna"
+              station="Vienna International Airport"
+              date="Fri, 19.10"
+              time="15:35"
+            />
+          </ItinerarySegment>
+        </ItineraryStatus>
+        <ItineraryBadgeList>
+          <BadgeListItem icon={<AlertCircle />}>The layover in Vienna is too short</BadgeListItem>
+        </ItineraryBadgeList>
+        <ItineraryStatus type="warning" label="Affected connection">
+          <ItinerarySegment noElevation>
+            <ItinerarySegmentStop
+              city="Vienna"
+              station="Vienna International Airport"
+              date="Fri, 19.10"
+              time="18:15"
+            />
+            <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
+            <ItinerarySegmentStop
+              city="Milan"
+              station="Milan Bergamo International Airport (BGY)"
+              date="Fri, 19.10"
+              time="19:20"
+            />
+          </ItinerarySegment>
+        </ItineraryStatus>
+      </Itinerary>
+      <Itinerary>
+        <ItineraryStatus type="info" label="Added stopover" spaceAfter="medium">
+          <ItinerarySegment noElevation>
+            <ItinerarySegmentStop
+              city="Prague"
+              station="Václav Havel Airport Prague (PRG)"
+              date="Fri, 19.10"
+              time="14:05"
+            />
+            <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
+            <ItinerarySegmentStop
+              city="Vienna"
+              station="Vienna International Airport"
+              date="Fri, 19.10"
+              time="15:35"
+            />
+          </ItinerarySegment>
+          <ItineraryBadgeList>
+            <BadgeListItem icon={<AlertCircle />}>The layover in Vienna is too short</BadgeListItem>
+          </ItineraryBadgeList>
+          <ItinerarySegment noElevation>
+            <ItinerarySegmentStop
+              city="Vienna"
+              station="Vienna International Airport"
+              date="Fri, 19.10"
+              time="18:15"
+            />
+            <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
+            <ItinerarySegmentStop
+              city="Milan"
+              station="Milan Bergamo International Airport (BGY)"
+              date="Fri, 19.10"
+              time="19:20"
+            />
+          </ItinerarySegment>
+        </ItineraryStatus>
+      </Itinerary>
+    </>
   );
 };
 
@@ -177,7 +216,7 @@ export const Detail = (): React.Node => {
 export const Default = (): React.Node => {
   return (
     <Itinerary>
-      <ItinerarySegment>
+      <ItinerarySegment spaceAfter="medium">
         <ItinerarySegmentStop
           city="Moscow"
           station="Sheremetyevo International Airport (SVO)"

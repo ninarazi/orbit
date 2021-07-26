@@ -6,17 +6,21 @@ import { ItinerarySegmentProvider } from "./context";
 import Stack from "../../Stack";
 import getSpacingToken from "../../common/getSpacingToken";
 import defaultTheme from "../../defaultTheme";
+import handleKeyDown from "../../utils/handleKeyDown";
 
 import type { Props } from ".";
 
 const StyledWrapper = styled.div`
   ${({ theme, noElevation }) => css`
-    position: relative;
     cursor: pointer;
     margin-bottom: ${getSpacingToken};
     box-shadow: ${!noElevation && theme.orbit.boxShadowFixed};
     border-radius: ${theme.orbit.borderRadiusLarge};
     padding: ${theme.orbit.spaceSmall} 0;
+    &:focus {
+      outline: none;
+      box-shadow: ${theme.orbit.boxShadowButtonFocus};
+    }
   `}
 `;
 
@@ -27,7 +31,7 @@ StyledWrapper.defaultProps = {
 
 const ItinerarySegment = ({
   children,
-  spaceAfter = "medium",
+  spaceAfter,
   dataTest,
   noElevation,
   onClick,
@@ -64,6 +68,8 @@ const ItinerarySegment = ({
     <StyledWrapper
       spaceAfter={spaceAfter}
       data-test={dataTest}
+      tabIndex={0}
+      onKeyDown={ev => handleKeyDown(ev, setOpened(!opened))}
       onClick={handleClick}
       noElevation={noElevation}
     >

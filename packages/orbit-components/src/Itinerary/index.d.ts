@@ -1,11 +1,11 @@
-import * as React from "react";
+import React from "react";
 
 import ItinerarySegment from "./ItinerarySegment";
 import ItineraryStatus from "./ItineraryStatus";
 import ItineraryBadgeList from "./ItineraryBadgeList";
 import ItinerarySegmentStop from "./ItinerarySegment/ItinerarySegmentStop";
 import ItinerarySegmentDetail from "./ItinerarySegment/ItinerarySegmentDetail";
-import { Global, SpaceAfter } from "../common/common";
+import Common from "../common/common";
 
 /** DOCS:
   To implement the Itinerary component into your project you'll need to add the import:
@@ -13,6 +13,7 @@ import { Global, SpaceAfter } from "../common/common";
   ```jsx
   import Itinerary, {
     ItinerarySegment,
+    ItineraryBadgeList,
     ItinerarySegmentStop,
     ItinerarySegmentDetail,
   } from "@kiwicom/orbit-components";
@@ -42,7 +43,7 @@ import { Global, SpaceAfter } from "../common/common";
   ```
 */
 
-export interface Props extends Global, SpaceAfter {
+export interface Props extends Common.Global, Common.SpaceAfter {
   /** The content of Itinerary component */
   readonly children: React.ReactNode;
 }

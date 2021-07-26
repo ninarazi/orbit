@@ -18,7 +18,6 @@ const lineMixin = css`
   position: absolute;
   height: calc(50% + 9px);
   z-index: -1;
-  display: block;
 `;
 
 // TODO: Improve

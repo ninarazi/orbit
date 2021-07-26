@@ -57,8 +57,8 @@ StyledWrapper.defaultProps = {
 const StyledStatusHeader = styled.div`
   ${({ theme, type }) => css`
     display: flex;
-    padding: 0 ${theme.orbit.spaceXSmall};
     align-items: center;
+    padding: 0 ${theme.orbit.spaceXSmall};
     height: 32px;
     border-radius: ${theme.orbit.borderRadiusNormal} ${theme.orbit.borderRadiusLarge} 0 0;
     background: ${type && resolveColor(type, true)};
@@ -67,15 +67,6 @@ const StyledStatusHeader = styled.div`
 
 // $FlowFixMe: https://github.com/flow-typed/flow-typed/issues/3653#issuecomment-568539198
 StyledStatusHeader.defaultProps = {
-  theme: defaultTheme,
-};
-
-const StyledChildrenWrapper = styled.div`
-  padding: ${({ theme }) => theme.orbit.spaceMedium} 0;
-`;
-
-// $FlowFixMe: https://github.com/flow-typed/flow-typed/issues/3653#issuecomment-568539198
-StyledChildrenWrapper.defaultProps = {
   theme: defaultTheme,
 };
 
@@ -121,7 +112,7 @@ const ItineraryStatus = ({
           </Stack>
         </StyledStatusText>
       </StyledStatusHeader>
-      <StyledChildrenWrapper>{children}</StyledChildrenWrapper>
+      {children}
     </StyledWrapper>
   );
 };

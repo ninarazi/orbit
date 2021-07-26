@@ -93,6 +93,8 @@ export { default as InputStepperStateless } from "./InputStepper/InputStepperSta
 export {
   default as Itinerary,
   ItinerarySegment,
+  ItineraryStatus,
+  ItineraryBadgeList,
   ItinerarySegmentStop,
   ItinerarySegmentDetail,
 } from "./Itinerary";

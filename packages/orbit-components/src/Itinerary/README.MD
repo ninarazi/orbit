@@ -5,6 +5,8 @@ To implement the Itinerary component into your project you'll need to add the im
 ```jsx
 import Itinerary, {
   ItinerarySegment,
+  ItineraryStatus,
+  ItineraryBadgeList,
   ItinerarySegmentStop,
   ItinerarySegmentDetail,
 } from "@kiwicom/orbit-components";
@@ -48,13 +50,12 @@ ItinerarySegment component serves as a wrapper of atomic units `ItinerarySegment
 
 ### Props
 
-| Name       | Type                    | Required           | Default | Description                                                                                                                                                    |
-| ---------- | ----------------------- | ------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| status     | [`Statuses`](#statuses) |                    |         | The status of ItinerarySegment                                                                                                                                 |
-| label      | `React.ReactNode`       |                    |         | Status message of ItinerarySegment                                                                                                                             |
-| children   | `React.ReactNode`       | :heavy_check_mark: |         | The content of ItinerarySegment                                                                                                                                |
-| dataTest   | `string`                |                    |         | Optional prop for testing purposes.                                                                                                                            |
-| spaceAfter | `enum`                  |                    |         | Additional `margin-bottom` after component. [See this docs](https://github.com/kiwicom/orbit/tree/master/packages/orbit-components/src/common/getSpacingToken) |
+| Name       | Type              | Required           | Default | Description                                                                                                                                                    |
+| ---------- | ----------------- | ------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| label      | `React.ReactNode` |                    |         | Status message of ItinerarySegment                                                                                                                             |
+| children   | `React.ReactNode` | :heavy_check_mark: |         | The content of ItinerarySegment                                                                                                                                |
+| dataTest   | `string`          |                    |         | Optional prop for testing purposes.                                                                                                                            |
+| spaceAfter | `enum`            |                    |         | Additional `margin-bottom` after component. [See this docs](https://github.com/kiwicom/orbit/tree/master/packages/orbit-components/src/common/getSpacingToken) |
 
 ## ItinerarySegmentStop
 
@@ -71,6 +72,19 @@ ItinerarySegmentStop is an atomic unit of the Itinerary component, shows two loc
 | hidden   | `boolean` |                    |         | ItinerarySegmentStop which status is hidden                                                       |
 | warning  | `boolean` |                    |         | Changes the icon of current ItinerarySegmentStop, if there is some important information for user |
 | minWidth | `number`  |                    |         | sets min-width for first column with date and time                                                |
+
+## ItineraryStatus
+
+ItineraryStatus is a wrapper for `ItinerarySegment` or group of segments. Shows the [status`](#statuses) of the `Itinerary` or `ItinerarySegment`
+
+### Props
+
+| Name     | Type                    | Required           | Default | Description                                |
+| -------- | ----------------------- | ------------------ | ------- | ------------------------------------------ |
+| type     | [`Statuses`](#statuses) |                    |         | The type of `ItineraryStatus` component    |
+| label    | `React.Node`            |                    |         | The label of the `ItineraryStatus`         |
+| offset   | `number`                |                    |         | The offset for the label                   |
+| children | `React.ReactNode`       | :heavy_check_mark: |         | The content of `ItineraryStatus` component |
 
 ## ItinerarySegmentDetail
 

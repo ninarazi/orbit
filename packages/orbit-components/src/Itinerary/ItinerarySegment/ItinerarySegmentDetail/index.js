@@ -62,7 +62,7 @@ StyledExpandable.defaultProps = {
 
 const StyledExpandableContent = styled.div`
   ${({ offset, theme }) => css`
-    padding: 12px;
+    padding: ${theme.orbit.spaceSmall};
     position: relative;
     z-index: 1;
     margin-${left}: ${parseFloat(theme.orbit.spaceXSmall) + offset + 1}px;
@@ -74,22 +74,29 @@ const StyledHeadingOffset = styled.div`
 `;
 
 const StyledIcon = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 3px;
-  position: relative;
-  z-index: 3;
-  &:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 200%;
-    left: 0;
-    background: #fff;
-    border-radius: 24px;
-    z-index: -1;
-  }
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    position: relative;
+    z-index: 3;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 200%;
+      left: 0;
+      background: ${theme.orbit.paletteWhite};
+      border-radius: 24px;
+      z-index: -1;
+    }
+  `}
 `;
+
+// $FlowFixMe: https://github.com/flow-typed/flow-typed/issues/3653#issuecomment-568539198
+StyledIcon.defaultProps = {
+  theme: themeDefault,
+};
 
 // $FlowFixMe: https://github.com/flow-typed/flow-typed/issues/3653#issuecomment-568539198
 StyledExpandableContent.defaultProps = {

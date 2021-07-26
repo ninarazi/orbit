@@ -33,6 +33,8 @@ const pathOverwrites = {
   IllustrationPrimitive: "primitives/IllustrationPrimitive",
   InputStepperStateless: "InputStepper/InputStepperStateless",
   ItinerarySegment: "Itinerary/ItinerarySegment",
+  ItineraryStatus: "Itinerary/ItineraryStatus",
+  ItineraryBadgeList: "Itinerary/ItineraryBadgeList",
   ItinerarySegmentDetail: "Itinerary/ItinerarySegment/ItinerarySegmentDetail",
   ItinerarySegmentStop: "Itinerary/ItinerarySegment/ItinerarySegmentStop",
   LayoutColumn: "Layout/LayoutColumn",
