@@ -1,11 +1,22 @@
 // @flow
 import * as React from "react";
 
+type Detail = {|
+  +icon: React.Node,
+  +text: React.Node,
+  +additional: React.Node,
+|};
+
+type ContentItem = {|
+  +heading: React.Node,
+  +items: Detail[],
+|};
+
 export type Props = {|
+  +icon?: React.Node,
   +summary: React.Node,
   +duration: string,
-  +children: React.Node,
-  +icon?: React.Node,
+  +content: ContentItem[],
 |};
 
 declare export default React.ComponentType<Props>;

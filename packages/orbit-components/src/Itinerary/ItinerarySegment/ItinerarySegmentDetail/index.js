@@ -61,9 +61,34 @@ StyledExpandable.defaultProps = {
 };
 
 const StyledExpandableContent = styled.div`
-  ${({ offset }) => css`
-    margin-${left}: ${offset + 16}px;
+  ${({ offset, theme }) => css`
+    padding: 12px;
+    position: relative;
+    z-index: 1;
+    margin-${left}: ${parseFloat(theme.orbit.spaceXSmall) + offset + 1}px;
   `}
+`;
+
+const StyledHeadingOffset = styled.div`
+  margin-${left}: 32px;
+`;
+
+const StyledIcon = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  position: relative;
+  z-index: 3;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 200%;
+    left: 0;
+    background: #fff;
+    border-radius: 24px;
+    z-index: -1;
+  }
 `;
 
 // $FlowFixMe: https://github.com/flow-typed/flow-typed/issues/3653#issuecomment-568539198
@@ -71,7 +96,7 @@ StyledExpandableContent.defaultProps = {
   theme: themeDefault,
 };
 
-const ItinerarySegmentDetail = ({ duration, summary, children }: Props): React.Node => {
+const ItinerarySegmentDetail = ({ duration, summary, content }: Props): React.Node => {
   const { opened, setOpened, noElevation } = usePart();
   const { calculatedWidth } = useWidth();
   const [{ height }, ref] = useBoundingRect({ height: 0 });
@@ -96,7 +121,33 @@ const ItinerarySegmentDetail = ({ duration, summary, children }: Props): React.N
         </StyledInnerWrapper>
         <Slide maxHeight={height} expanded={opened} id={slideID} ariaLabelledBy={labelID}>
           <StyledExpandable ref={ref} onClick={setOpened}>
-            <StyledExpandableContent offset={calculatedWidth}>{children}</StyledExpandableContent>
+            <StyledExpandableContent offset={calculatedWidth}>
+              {content &&
+                content.map(({ heading, items }) => {
+                  return (
+                    <>
+                      <StyledHeadingOffset>
+                        <Text weight="bold" spaceAfter="medium">
+                          {heading}
+                        </Text>
+                      </StyledHeadingOffset>
+                      <Stack direction="column" spacing="XSmall" spaceAfter="medium">
+                        {items.map(({ icon, text, additional }) => {
+                          return (
+                            <Stack flex grow={false} align="center">
+                              <StyledIcon>{icon}</StyledIcon>
+                              <Stack inline justify="between">
+                                <Text>{text}</Text>
+                                <Text weight="bold">{additional}</Text>
+                              </Stack>
+                            </Stack>
+                          );
+                        })}
+                      </Stack>
+                    </>
+                  );
+                })}
+            </StyledExpandableContent>
           </StyledExpandable>
         </Slide>
       </StyledWrapper>

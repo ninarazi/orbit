@@ -2,12 +2,16 @@
 import * as React from "react";
 import { text, boolean } from "@storybook/addon-knobs";
 
+import Wifi from "../icons/Wifi";
+import PowerPlug from "../icons/PowerPlug";
+import Entertainment from "../icons/Entertainment";
+import Seat from "../icons/Seat";
+import Info from "../icons/InformationCircle";
 import Airplane from "../icons/AirplaneUp";
 import Stack from "../Stack";
 import CarrierLogo from "../CarrierLogo";
 import Badge from "../Badge";
 import { BadgeListItem } from "../BadgeList";
-import Text from "../Text";
 import AlertCircle from "../icons/AlertCircle";
 import Guarantee from "../icons/KiwicomGuarantee";
 
@@ -31,17 +35,58 @@ const BadgeGroup = () => {
   );
 };
 
-const CollapsedContent = (): React.Node => {
-  return (
-    <Stack direction="column">
-      <Text weight="bold">Connection info</Text>
-      <Text>Connection number</Text>
-      <Text weight="bold">Seating info</Text>
-      <Text>Seat pitch</Text>
-      <Text>Seat width</Text>
-    </Stack>
-  );
-};
+const content = [
+  {
+    heading: "Connection Info",
+    items: [
+      {
+        icon: <Airplane size="small" />,
+        text: "Carrier",
+        additional: "Ryanair",
+      },
+      {
+        icon: <Info size="small" />,
+        text: "Connection number",
+        additional: "RA 8345",
+      },
+    ],
+  },
+  {
+    heading: "Seating Info",
+    items: [
+      {
+        icon: <Seat size="small" />,
+        text: "Seat pitch",
+        additional: "76cm",
+      },
+      {
+        icon: <Seat size="small" />,
+        text: "Seat width",
+        additional: "43cm",
+      },
+      {
+        icon: <Seat size="small" />,
+        text: "Seat recline",
+        additional: "7cm",
+      },
+      {
+        icon: <Entertainment size="small" />,
+        text: "Audio & video on demand",
+        additional: "No",
+      },
+      {
+        icon: <PowerPlug size="small" />,
+        text: "In-seat power",
+        additional: "No",
+      },
+      {
+        icon: <Wifi size="small" />,
+        text: "Wi-Fi on board",
+        additional: "No",
+      },
+    ],
+  },
+];
 
 export const Segment = (): React.Node => {
   return (
@@ -53,9 +98,7 @@ export const Segment = (): React.Node => {
           date="Fri, 19.10"
           time="14:05"
         />
-        <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
-          <CollapsedContent />
-        </ItinerarySegmentDetail>
+        <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
         <ItinerarySegmentStop
           city="Milan"
           station="Milan Bergamo International Airport (BGY)"
@@ -78,9 +121,7 @@ export const Status = (): React.Node => {
             date="Fri, 19.10"
             time="14:05"
           />
-          <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
-            <CollapsedContent />
-          </ItinerarySegmentDetail>
+          <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
           <ItinerarySegmentStop
             city="Vienna"
             station="Vienna International Airport"
@@ -100,9 +141,7 @@ export const Status = (): React.Node => {
             date="Fri, 19.10"
             time="18:15"
           />
-          <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
-            <CollapsedContent />
-          </ItinerarySegmentDetail>
+          <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
           <ItinerarySegmentStop
             city="Milan"
             station="Milan Bergamo International Airport (BGY)"
@@ -130,9 +169,7 @@ export const Stop = (): React.Node => {
 export const Detail = (): React.Node => {
   return (
     <ItinerarySegment noElevation>
-      <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
-        <CollapsedContent />
-      </ItinerarySegmentDetail>
+      <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
     </ItinerarySegment>
   );
 };
@@ -147,9 +184,7 @@ export const Default = (): React.Node => {
           date="Fri, 19.10"
           time="14:05"
         />
-        <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
-          <CollapsedContent />
-        </ItinerarySegmentDetail>
+        <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
         <ItinerarySegmentStop
           city="Prague"
           station="Václav Havel Airport Prague (PRG)"
@@ -169,9 +204,7 @@ export const Default = (): React.Node => {
           date="Sat, 20.10"
           time="11:05"
         />
-        <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />}>
-          <CollapsedContent />
-        </ItinerarySegmentDetail>
+        <ItinerarySegmentDetail duration="2h 30m" summary={<BadgeGroup />} content={content} />
         <ItinerarySegmentStop
           city="Milan"
           station="Milan Bergamo International Airport (BGY)"
