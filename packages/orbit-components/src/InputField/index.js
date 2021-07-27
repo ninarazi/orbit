@@ -18,6 +18,7 @@ import useErrorTooltip from "../TooltipForm/hooks/useErrorTooltip";
 import formElementFocus from "./helpers/formElementFocus";
 import { StyledButtonPrimitiveIconContainer } from "../primitives/ButtonPrimitive/components/ButtonPrimitiveIconContainer";
 import mq from "../utils/mediaQuery";
+import mergeRefs from "../utils/mergeRefs";
 
 import type { Props } from ".";
 
@@ -362,6 +363,9 @@ const InputField: React.AbstractComponent<Props, HTMLInputElement> = React.forwa
     handleBlur,
   } = useErrorTooltip({ onFocus, onBlur });
 
+  const inputRef = React.useRef(null);
+  const shown = tooltipShown || tooltipShownHover;
+
   return (
     <>
       <Field
@@ -429,7 +433,7 @@ const InputField: React.AbstractComponent<Props, HTMLInputElement> = React.forwa
             }
             onChange={onChange}
             onFocus={handleFocus}
-            onBlur={handleBlur}
+            onBlur={shown ? undefined : handleBlur}
             onKeyUp={onKeyUp}
             onKeyDown={onKeyDown}
             onSelect={onSelect}
@@ -446,7 +450,7 @@ const InputField: React.AbstractComponent<Props, HTMLInputElement> = React.forwa
             maxLength={maxLength}
             size={size}
             error={insideInputGroup ? undefined : error}
-            ref={ref}
+            ref={mergeRefs([ref, inputRef])}
             tabIndex={tabIndex}
             inlineLabel={inlineLabel}
             readOnly={readOnly}
@@ -468,7 +472,8 @@ const InputField: React.AbstractComponent<Props, HTMLInputElement> = React.forwa
             onClose={handleBlur}
             iconRef={iconRef}
             labelRef={labelRef}
-            tooltipShown={tooltipShown || tooltipShownHover}
+            inputRef={inputRef}
+            tooltipShown={shown}
             inlineLabel={!tags && inlineLabel}
           />
         )}
