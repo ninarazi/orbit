@@ -470,6 +470,7 @@ const InputField: React.AbstractComponent<Props, HTMLInputElement> = React.forwa
             error={error}
             inputSize={size}
             onClose={handleBlur}
+            onShow={handleFocus}
             iconRef={iconRef}
             labelRef={labelRef}
             inputRef={inputRef}
